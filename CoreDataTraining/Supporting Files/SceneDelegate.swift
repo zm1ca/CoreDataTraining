@@ -23,8 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func configureNavigationController() -> UINavigationController {
-        let companiesController = ViewController()
-        return CustiomNavigationController(rootViewController: companiesController)
+        let companiesController = CompaniesViewController()
+        return LightContentNavigationController(rootViewController: companiesController)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

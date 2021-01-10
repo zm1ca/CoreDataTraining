@@ -13,8 +13,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let navigationBar = UINavigationBar.appearance()
+        
+        navigationBar.prefersLargeTitles   = true
+        navigationBar.standardAppearance   = navBarAppearance()
+        navigationBar.scrollEdgeAppearance = navBarAppearance()
+        navigationBar.tintColor = .white
+         
         return true
+    }
+    
+    func navBarAppearance() -> UINavigationBarAppearance {
+        let navBarAppearance = UINavigationBarAppearance()
+        
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.titleTextAttributes      = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.backgroundColor          = .CDTLightRed
+        
+        return navBarAppearance
     }
 
     // MARK: UISceneSession Lifecycle
