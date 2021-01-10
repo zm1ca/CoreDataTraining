@@ -14,6 +14,7 @@
 		40361E6025A8E0F800353BF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40361E5F25A8E0F800353BF9 /* Assets.xcassets */; };
 		40361E6325A8E0F800353BF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40361E6125A8E0F800353BF9 /* LaunchScreen.storyboard */; };
 		40361E7025A8F30B00353BF9 /* CustiomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E6F25A8F30A00353BF9 /* CustiomNavigationController.swift */; };
+		4069601625AB053B00BCD77A /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069601525AB053B00BCD77A /* UIColor+Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		40361E6225A8E0F800353BF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40361E6425A8E0F800353BF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40361E6F25A8F30A00353BF9 /* CustiomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustiomNavigationController.swift; sourceTree = "<group>"; };
+		4069601525AB053B00BCD77A /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				40361E5A25A8E0F700353BF9 /* ViewController.swift */,
 				40361E6B25A8E10F00353BF9 /* Supporting Files */,
 				40361E6425A8E0F800353BF9 /* Info.plist */,
+				4069601525AB053B00BCD77A /* UIColor+Theme.swift */,
 			);
 			path = CoreDataTraining;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4069601625AB053B00BCD77A /* UIColor+Theme.swift in Sources */,
 				40361E7025A8F30B00353BF9 /* CustiomNavigationController.swift in Sources */,
 				40361E5B25A8E0F700353BF9 /* ViewController.swift in Sources */,
 				40361E5725A8E0F700353BF9 /* AppDelegate.swift in Sources */,
