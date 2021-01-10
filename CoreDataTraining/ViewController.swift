@@ -11,11 +11,18 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         
-        tableView.backgroundColor = UIColor(red: 9/255, green: 45/255, blue: 64/255, alpha: 1)
-        tableView.separatorStyle = .none
+        //Setting up tableView
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellid")
+        tableView.delegate = self
+        tableView.dataSource = self
         
+        //Stylyzing separators
+        tableView.backgroundColor = .CDTDarkBlue
+        tableView.separatorColor  = .white
+        tableView.tableFooterView = UIView()
+        
+        //Stylyzing Navigation Bar
         navigationItem.title = "Companies"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAddCompany))
         
@@ -32,13 +39,12 @@ class ViewController: UITableViewController {
     
     
     func navBarAppearance() -> UINavigationBarAppearance {
-        let lightRed = UIColor(red: 247/255, green: 66/255, blue: 82/255, alpha: 1)
         let navBarAppearance = UINavigationBarAppearance()
         
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.backgroundColor = lightRed
+        navBarAppearance.backgroundColor = .CDTLightRed
         
         return navBarAppearance
     }
@@ -46,5 +52,31 @@ class ViewController: UITableViewController {
     @objc func handleAddCompany() {
         print("adding")
     }
+    
+    
+    //MARK: - Table View Data Source
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath)
+        cell.backgroundColor = .CDTTealColor
+        cell.textLabel?.text = "THE COMPANY NAME"
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 8
+    }
+    
+    
+    //MARK: - Table View Delegate
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .CDTLightBlue
+        return view
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
 }
-
