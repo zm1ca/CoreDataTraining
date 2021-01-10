@@ -9,7 +9,7 @@ import UIKit
 
 class CompaniesViewController: UITableViewController {
     
-    let companies = [
+    var companies = [
         Company(name: "Google", founded: Date()),
         Company(name: "Facebook", founded: Date()),
         Company(name: "Apple", founded: Date())
@@ -37,6 +37,8 @@ class CompaniesViewController: UITableViewController {
     
     @objc func handleAddCompany() {
         let createCompanyController = CreateCompanyController()
+        createCompanyController.delegate = self
+        
         let navController = LightContentNavigationController(rootViewController: createCompanyController)
         
         present(navController, animated: true)
@@ -71,5 +73,14 @@ class CompaniesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
+    }
+}
+
+
+extension CompaniesViewController: CreateCompanyControllerDelegate {
+    func addCompany(company: Company) {
+        companies.append(company)
+        let newIndexPath = IndexPath(row: companies.count - 1, section: 0)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
     }
 }
