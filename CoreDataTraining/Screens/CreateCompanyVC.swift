@@ -26,6 +26,23 @@ class CreateCompanyVC: UIViewController {
     
     var delegate: CreateCompanyVCDelegate?
     
+    
+    lazy var companyImageView: UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "select_photo_empty"))
+        imageView.isUserInteractionEnabled = true
+        
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPhoto)))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    @objc private func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate      = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true)
+    }
+
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name"
@@ -127,13 +144,22 @@ class CreateCompanyVC: UIViewController {
             backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundView.heightAnchor.constraint(equalToConstant: 100)
+            backgroundView.heightAnchor.constraint(equalToConstant: 216)
+        ])
+        
+        
+        backgroundView.addSubview(companyImageView)
+        NSLayoutConstraint.activate([
+            companyImageView.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: padding),
+            companyImageView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            companyImageView.heightAnchor.constraint(equalToConstant: 100),
+            companyImageView.widthAnchor.constraint(equalToConstant: 100),
         ])
         
         
         backgroundView.addSubview(nameLabel)
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor),
+            nameLabel.topAnchor.constraint(equalTo: companyImageView.bottomAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: padding),
             nameLabel.widthAnchor.constraint(equalToConstant: 100),
             nameLabel.heightAnchor.constraint(equalToConstant: 50)
@@ -156,5 +182,23 @@ class CreateCompanyVC: UIViewController {
             datePicker.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -padding),
             datePicker.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: -padding)
         ])
+    }
+}
+
+
+extension CreateCompanyVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            companyImageView.image = editedImage
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            companyImageView.image = originalImage
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
 }
