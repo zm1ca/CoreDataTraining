@@ -8,12 +8,12 @@
 import UIKit
 import CoreData
 
-protocol CreateCompanyControllerDelegate {
+protocol CreateCompanyVCDelegate {
     func addCompany(company: Company)
     func editCompany(company: Company)
 }
 
-class CreateCompanyController: UIViewController {
+class CreateCompanyVC: UIViewController {
     
     var company: Company? {
         didSet {
@@ -21,7 +21,7 @@ class CreateCompanyController: UIViewController {
         }
     }
     
-    var delegate: CreateCompanyControllerDelegate?
+    var delegate: CreateCompanyVCDelegate?
     
     let nameLabel: UILabel = {
         let label = UILabel()

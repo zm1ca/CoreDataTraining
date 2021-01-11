@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class CompaniesViewController: UITableViewController {
+class CompanyTableVC: UITableViewController {
     
     var companies = [Company]()
     
@@ -23,7 +23,7 @@ class CompaniesViewController: UITableViewController {
             let companies = try context.fetch(fetchRequest)
             
             self.companies = companies
-            self.tableView.reloadData()
+            tableView.reloadData()
             
         } catch let error {
             print("Failed to fetch companies:", error)
@@ -53,7 +53,7 @@ class CompaniesViewController: UITableViewController {
     
     
     @objc func handleAddCompany() {
-        let createCompanyController = CreateCompanyController()
+        let createCompanyController = CreateCompanyVC()
         createCompanyController.delegate = self
         
         let navController = LightContentNavigationController(rootViewController: createCompanyController)
@@ -110,7 +110,7 @@ class CompaniesViewController: UITableViewController {
         deleteAction.backgroundColor = .CDTLightRed
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, _) in
-            let editCompanyController = CreateCompanyController()
+            let editCompanyController = CreateCompanyVC()
             editCompanyController.delegate = self
             editCompanyController.company = self.companies[indexPath.row]
             let navController = LightContentNavigationController(rootViewController: editCompanyController)
@@ -124,7 +124,7 @@ class CompaniesViewController: UITableViewController {
 }
 
 
-extension CompaniesViewController: CreateCompanyControllerDelegate {
+extension CompanyTableVC: CreateCompanyVCDelegate {
     func addCompany(company: Company) {
         companies.append(company)
         let newIndexPath = IndexPath(row: companies.count - 1, section: 0)
