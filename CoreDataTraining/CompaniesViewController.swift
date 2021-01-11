@@ -6,18 +6,41 @@
 //
 
 import UIKit
+import CoreData
 
 class CompaniesViewController: UITableViewController {
     
-    var companies = [
-        Company(name: "Google", founded: Date()),
-        Company(name: "Facebook", founded: Date()),
-        Company(name: "Apple", founded: Date())
-    ]
+    var companies = [Company]()
+    
+    
+    private func fetchCompanies() {
+        let persistantContainer = NSPersistentContainer(name: "CoreDataTrainingModels")
+        persistantContainer.loadPersistentStores { (storeDescription, error) in
+            if let error = error {
+                fatalError("Loading of store failed: \(error)")
+            }
+        }
+        
+        let context = persistantContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
+        
+        do {
+            let companies = try context.fetch(fetchRequest)
+            companies.forEach { (company) in
+                print(company.name ?? "")
+            }
+        } catch let error {
+            print("Failed to fetch companies:", error)
+        }
+        
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchCompanies()
         
         //Setting up tableView
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellid")
