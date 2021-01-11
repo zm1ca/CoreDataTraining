@@ -14,26 +14,20 @@ class CompaniesViewController: UITableViewController {
     
     
     private func fetchCompanies() {
-        let persistantContainer = NSPersistentContainer(name: "CoreDataTrainingModels")
-        persistantContainer.loadPersistentStores { (storeDescription, error) in
-            if let error = error {
-                fatalError("Loading of store failed: \(error)")
-            }
-        }
         
-        let context = persistantContainer.viewContext
+        let context = CoreDataManager.shared.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
         
         do {
             let companies = try context.fetch(fetchRequest)
-            companies.forEach { (company) in
-                print(company.name ?? "")
-            }
+            
+            self.companies = companies
+            self.tableView.reloadData()
+            
         } catch let error {
             print("Failed to fetch companies:", error)
         }
-        
     }
     
 
