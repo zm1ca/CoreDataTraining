@@ -94,7 +94,6 @@ class CompaniesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-        
             //Table View
             let company = self.companies.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -108,15 +107,20 @@ class CompaniesViewController: UITableViewController {
                 print("Deletion error: \(deletionError)")
             }
         }
+        deleteAction.backgroundColor = .CDTLightRed
         
-        let editAction = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
-            print("Attempting to edit")
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, _) in
+            let editCompanyController = CreateCompanyController()
+            editCompanyController.delegate = self
+            editCompanyController.company = self.companies[indexPath.row]
+            let navController = LightContentNavigationController(rootViewController: editCompanyController)
+            self.present(navController, animated: true, completion: nil)
         }
-        
-        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        editAction.backgroundColor = .CDTDarkBlue
 
-        return swipeActions
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
+
 }
 
 
@@ -125,5 +129,11 @@ extension CompaniesViewController: CreateCompanyControllerDelegate {
         companies.append(company)
         let newIndexPath = IndexPath(row: companies.count - 1, section: 0)
         tableView.insertRows(at: [newIndexPath], with: .automatic)
+    }
+    
+    func editCompany(company: Company) {
+        let row = companies.firstIndex(of: company)
+        let editingIndexPath = IndexPath(row: row!, section: 0)
+        tableView.reloadRows(at: [editingIndexPath], with: .middle)
     }
 }

@@ -10,9 +10,16 @@ import CoreData
 
 protocol CreateCompanyControllerDelegate {
     func addCompany(company: Company)
+    func editCompany(company: Company)
 }
 
 class CreateCompanyController: UIViewController {
+    
+    var company: Company? {
+        didSet {
+            nameTextField.text = company?.name
+        }
+    }
     
     var delegate: CreateCompanyControllerDelegate?
     
@@ -30,6 +37,12 @@ class CreateCompanyController: UIViewController {
         return textField
     }()
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.title = company == nil ? "Create Company" : "Edit Company"
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +50,6 @@ class CreateCompanyController: UIViewController {
         
         setupUI()
         
-        navigationItem.title = "Create Company"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
     }
@@ -49,7 +61,15 @@ class CreateCompanyController: UIViewController {
     
     
     @objc private func handleSave() {
-        
+        if company == nil {
+            createCompany()
+        } else {
+            editCompany()
+        }
+    }
+    
+    
+    private func createCompany() {
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let company = NSEntityDescription.insertNewObject(forEntityName: "Company", into: context)
         company.setValue(nameTextField.text, forKey: "name")
@@ -66,6 +86,21 @@ class CreateCompanyController: UIViewController {
         }
     }
     
+    
+    private func editCompany() {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        company?.name = nameTextField.text
+        do {
+            try context.save()
+            
+            dismiss(animated: true) {
+                self.delegate?.editCompany(company: self.company!)
+            }
+            
+        } catch let savingError {
+            print("Saving error: \(savingError)")
+        }
+    }
     
     private func setupUI() {
         let backgroundView = UIView()
