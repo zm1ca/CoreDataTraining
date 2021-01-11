@@ -91,6 +91,32 @@ class CompaniesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+        
+            //Table View
+            let company = self.companies.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+
+            //Core Data
+            let context = CoreDataManager.shared.persistentContainer.viewContext
+            context.delete(company)
+            do {
+                try context.save()
+            } catch let deletionError {
+                print("Deletion error: \(deletionError)")
+            }
+        }
+        
+        let editAction = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
+            print("Attempting to edit")
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+
+        return swipeActions
+    }
 }
 
 
