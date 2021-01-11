@@ -82,6 +82,12 @@ class CompanyTableVC: UITableViewController {
             cell.textLabel?.text = company.name
         }
         
+        if let imageData = company.imageData {
+            cell.imageView?.image = UIImage(data: imageData)
+        } else {
+            cell.imageView?.image = #imageLiteral(resourceName: "select_photo_empty")
+        }
+        
         return cell
     }
     
