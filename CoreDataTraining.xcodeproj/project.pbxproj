@@ -15,7 +15,7 @@
 		40361E7025A8F30B00353BF9 /* LightContentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E6F25A8F30A00353BF9 /* LightContentNavigationController.swift */; };
 		403ACDC225AB0F6600B2EE3C /* CreateCompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403ACDC125AB0F6600B2EE3C /* CreateCompanyController.swift */; };
 		4069601625AB053B00BCD77A /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069601525AB053B00BCD77A /* UIColor+Theme.swift */; };
-		4069601925AB0A2500BCD77A /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069601825AB0A2500BCD77A /* Company.swift */; };
+		40966B4325AC35B900CB0339 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40966B4225AC35B900CB0339 /* CoreDataManager.swift */; };
 		409D390025AB75EA00FC7A34 /* CoreDataTrainingModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 409D38FE25AB75EA00FC7A34 /* CoreDataTrainingModels.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +30,7 @@
 		40361E6F25A8F30A00353BF9 /* LightContentNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightContentNavigationController.swift; sourceTree = "<group>"; };
 		403ACDC125AB0F6600B2EE3C /* CreateCompanyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyController.swift; sourceTree = "<group>"; };
 		4069601525AB053B00BCD77A /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
-		4069601825AB0A2500BCD77A /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		40966B4225AC35B900CB0339 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		409D38FF25AB75EA00FC7A34 /* CoreDataTraining.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTraining.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,8 +66,8 @@
 			children = (
 				40361E5A25A8E0F700353BF9 /* CompaniesViewController.swift */,
 				403ACDC125AB0F6600B2EE3C /* CreateCompanyController.swift */,
-				4069601825AB0A2500BCD77A /* Company.swift */,
 				409D38FE25AB75EA00FC7A34 /* CoreDataTrainingModels.xcdatamodeld */,
+				40966B4225AC35B900CB0339 /* CoreDataManager.swift */,
 				4069601525AB053B00BCD77A /* UIColor+Theme.swift */,
 				40361E6B25A8E10F00353BF9 /* Supporting Files */,
 				40361E6425A8E0F800353BF9 /* Info.plist */,
@@ -162,8 +162,8 @@
 				403ACDC225AB0F6600B2EE3C /* CreateCompanyController.swift in Sources */,
 				409D390025AB75EA00FC7A34 /* CoreDataTrainingModels.xcdatamodeld in Sources */,
 				40361E5725A8E0F700353BF9 /* AppDelegate.swift in Sources */,
+				40966B4325AC35B900CB0339 /* CoreDataManager.swift in Sources */,
 				40361E5925A8E0F700353BF9 /* SceneDelegate.swift in Sources */,
-				4069601925AB0A2500BCD77A /* Company.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
