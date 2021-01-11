@@ -11,31 +11,11 @@ import CoreData
 class CompanyTableVC: UITableViewController {
     
     var companies = [Company]()
-    
-    
-    private func fetchCompanies() {
-        
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
-        
-        do {
-            let companies = try context.fetch(fetchRequest)
-            
-            self.companies = companies
-            tableView.reloadData()
-            
-        } catch let error {
-            print("Failed to fetch companies:", error)
-        }
-    }
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        fetchCompanies()
-        
+
         //Setting up tableView
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellid")
         tableView.delegate = self
@@ -48,17 +28,54 @@ class CompanyTableVC: UITableViewController {
         
         //Stylyzing Navigation Bar
         navigationItem.title = "Companies"
+        navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAddCompany))
+        
+        fetchCompanies()
     }
     
     
-    @objc func handleAddCompany() {
+    @objc private func handleReset() {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Company.fetchRequest())
+        do {
+            try context.execute(batchDeleteRequest)
+            
+            var indexPathsToRemove = [IndexPath]()
+            for (index, _) in companies.enumerated() {
+                indexPathsToRemove.append(IndexPath(row: index, section: 0))
+            }
+            companies.removeAll()
+            tableView.deleteRows(at: indexPathsToRemove, with: .left)
+ 
+        } catch let deleteError {
+            print("Failed to delete objects from Core Data: \(deleteError)")
+        }
+    }
+    
+    
+    @objc private func handleAddCompany() {
         let createCompanyController = CreateCompanyVC()
         createCompanyController.delegate = self
         
         let navController = LightContentNavigationController(rootViewController: createCompanyController)
         
         present(navController, animated: true)
+    }
+    
+    
+    private func fetchCompanies() {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
+        
+        do {
+            let companies = try context.fetch(fetchRequest)
+            self.companies = companies
+            tableView.reloadData()
+            
+        } catch let error {
+            print("Failed to fetch companies:", error)
+        }
     }
     
     
@@ -107,6 +124,19 @@ class CompanyTableVC: UITableViewController {
         return 50
     }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "No companies available..."
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return companies.isEmpty ? 100 : 0
+    }
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
             //Table View
@@ -135,7 +165,6 @@ class CompanyTableVC: UITableViewController {
 
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
-
 }
 
 
