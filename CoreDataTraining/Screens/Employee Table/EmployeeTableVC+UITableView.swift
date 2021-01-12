@@ -8,21 +8,11 @@
 import UIKit
 
 extension EmployeeTableVC {
-    
-    var group1: [Employee] {
-        return employees.filter { $0.name!.count < 6 }
-    }
-    
-    var group2: [Employee] {
-        return employees.filter { $0.name!.count > 6 && $0.name!.count < 9 }
-    }
-    
-    var group3: [Employee] {
-        return employees.filter { $0.name!.count > 9 }
-    }
-    
+
     var allEmployees: [[Employee]] {
-        return [group1, group2, group3]
+        EmployeeType.allCases.map { employeeType in
+            employees.filter { $0.type == employeeType.rawValue }
+        }
     }
     
     
@@ -32,17 +22,7 @@ extension EmployeeTableVC {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = IndentedLabel()
-        var sectionTitle: String
-        
-        if section == 0 {
-            sectionTitle = "Short"
-        } else if section == 1 {
-            sectionTitle = "Normal"
-        } else {
-            sectionTitle = "Long"
-        }
-        
-        label.text              = sectionTitle
+        label.text              = EmployeeType.allRaws[section]
         label.textColor         = .CDTDarkBlue
         label.font              = UIFont.boldSystemFont(ofSize: 16)
         label.backgroundColor   = .CDTLightBlue

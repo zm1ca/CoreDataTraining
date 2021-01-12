@@ -47,9 +47,7 @@ class CreateEmployeeVC: UIViewController {
     }()
     
     let employeeTypeSegmentedControl: UISegmentedControl = {
-        #warning("Stringly typed")
-        let types = ["Executive", "Management", "Staff"]
-        let segmentedControl = UISegmentedControl(items: types)
+        let segmentedControl = UISegmentedControl(items: EmployeeType.allRaws)
         segmentedControl.selectedSegmentIndex = 0
         //segmentedControl.tintColor = .white
         //segmentedControl.selectedSegmentTintColor = .CDTDarkBlue
