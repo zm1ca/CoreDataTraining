@@ -67,6 +67,12 @@ class CoreDataManager {
         
         employee.setValue(name, forKey: "name")
         
+        let employeeInformation = NSEntityDescription.insertNewObject(forEntityName: "EmployeeInformation", into: context) as! EmployeeInformation
+        employeeInformation.taxid = "123"
+        employeeInformation.birthday = Date()
+        
+        employee.employeeInformation = employeeInformation
+        
         do {
             try context.save()
             return (employee, nil)

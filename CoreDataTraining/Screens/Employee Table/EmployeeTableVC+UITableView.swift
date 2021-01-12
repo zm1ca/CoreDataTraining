@@ -19,7 +19,8 @@ extension EmployeeTableVC {
         cell.backgroundColor        = .CDTTealColor
         cell.textLabel?.textColor   = .white
         cell.textLabel?.font        = UIFont.boldSystemFont(ofSize: 16)
-        cell.textLabel?.text        = employee.name
+
+        cell.textLabel?.text        = "\(employee.name!) + \(employee.employeeInformation?.taxid ?? "?")"
         
         return cell
     }
