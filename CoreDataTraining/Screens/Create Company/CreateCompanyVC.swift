@@ -31,6 +31,7 @@ class CreateCompanyVC: UIViewController {
     var delegate: CreateCompanyVCDelegate?
     
     
+    //MARK: - UI Elements
     lazy var companyImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "select_photo_empty"))
         
@@ -76,6 +77,7 @@ class CreateCompanyVC: UIViewController {
     }()
     
     
+    //MARK: - VC Lifecycle methods
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = company == nil ? "Create Company" : "Edit Company"
@@ -88,11 +90,12 @@ class CreateCompanyVC: UIViewController {
         
         setupUI()
         
-        setupCancelButtonInNavBar()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
+        setupLeftBarButtonItemAsCancel()
+        setupRightBarButtonItemAsSave(selector: #selector(handleSave))
     }
     
     
+    //MARK: - Private functionality
     @objc private func handleSave() {
         if company == nil {
             createCompany()
@@ -149,72 +152,51 @@ class CreateCompanyVC: UIViewController {
         }
     }
     
+    
+    //MARK: - Laying out UI
     private func setupUI() {
-        let backgroundView = UIView()
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundView.backgroundColor = .CDTLightBlue
+
+        setupLightBlueBackgroundView(height: 216)
         
         let padding: CGFloat = 16
+
         
-        view.addSubview(backgroundView)
+        view.addSubview(companyImageView)
         NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundView.heightAnchor.constraint(equalToConstant: 216)
-        ])
-        
-        
-        backgroundView.addSubview(companyImageView)
-        NSLayoutConstraint.activate([
-            companyImageView.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: padding),
-            companyImageView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            companyImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
+            companyImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             companyImageView.heightAnchor.constraint(equalToConstant: 100),
             companyImageView.widthAnchor.constraint(equalToConstant: 100),
         ])
         
         
-        backgroundView.addSubview(nameLabel)
+        view.addSubview(nameLabel)
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: companyImageView.bottomAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: padding),
+            nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
             nameLabel.widthAnchor.constraint(equalToConstant: 100),
             nameLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
         
         
-        backgroundView.addSubview(nameTextField)
+        view.addSubview(nameTextField)
         NSLayoutConstraint.activate([
             nameTextField.topAnchor.constraint(equalTo: nameLabel.topAnchor),
             nameTextField.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
-            nameTextField.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -padding),
+            nameTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
             nameTextField.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor)
         ])
         
         
-        backgroundView.addSubview(datePicker)
+        view.addSubview(datePicker)
         NSLayoutConstraint.activate([
             datePicker.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-            datePicker.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: padding),
-            datePicker.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -padding),
-            datePicker.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: -padding)
+            datePicker.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
+            datePicker.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
+            datePicker.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 }
 
 
-extension CreateCompanyVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            companyImageView.image = editedImage
-        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            companyImageView.image = originalImage
-        }
-        dismiss(animated: true, completion: nil)
-    }
-}
+

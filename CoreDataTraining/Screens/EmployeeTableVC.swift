@@ -22,7 +22,7 @@ class EmployeeTableVC: UITableViewController {
 
         tableView.backgroundColor = .CDTDarkBlue
         
-        setupPlusButtonInNavBar(selector: #selector(handleAdd))
+        setupRightBarButtonItemAsPlus(selector: #selector(handleAdd))
     }
     
     

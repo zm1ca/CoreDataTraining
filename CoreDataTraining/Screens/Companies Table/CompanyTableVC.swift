@@ -27,7 +27,7 @@ class CompanyTableVC: UITableViewController {
         navigationItem.title = "Companies"
 
         navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
-        setupPlusButtonInNavBar(selector: #selector(handleAddCompany))
+        setupRightBarButtonItemAsPlus(selector: #selector(handleAddCompany))
         
         if let fetchedCompanies = CoreDataManager.shared.fetchCompanies() {
             self.companies = fetchedCompanies

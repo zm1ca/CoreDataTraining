@@ -45,4 +45,19 @@ class CoreDataManager {
             print("Failed to delete objects from Core Data: \(deleteError)")
         }
     }
+    
+    
+    func createEmployee(name: String) -> Error? {
+        let context = persistentContainer.viewContext
+        let employee = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context)
+        
+        employee.setValue(name, forKey: "name")
+        
+        do {
+            try context.save()
+            return nil
+        } catch let saveError {
+            return saveError
+        }
+    }
 }
