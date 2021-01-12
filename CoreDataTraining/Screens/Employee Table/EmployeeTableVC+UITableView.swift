@@ -14,14 +14,19 @@ extension EmployeeTableVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EmployeeCell", for: indexPath)
-        let employee = employees[indexPath.row]
+        
         
         cell.backgroundColor        = .CDTTealColor
         cell.textLabel?.textColor   = .white
         cell.textLabel?.font        = UIFont.boldSystemFont(ofSize: 16)
-
-        cell.textLabel?.text        = "\(employee.name!) + \(employee.employeeInformation?.taxid ?? "?")"
         
+        let employee = employees[indexPath.row]
+        if let name = employee.name, let birthday = employee.employeeInformation?.birthday {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+
+            cell.textLabel?.text = "\(name) - Birthday: \(formatter.string(from: birthday))"
+        }
         return cell
     }
 }

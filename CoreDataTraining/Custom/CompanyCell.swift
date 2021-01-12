@@ -19,8 +19,8 @@ class CompanyCell: UITableViewCell {
             if let name = company.name, let founded = company.founded {
                 let formatter = DateFormatter()
                 formatter.dateStyle = .medium
-                let dateString = "\(name) - Founded: \(formatter.string(from: founded))"
-                nameFoundedDateLabel.text = dateString
+                let companyInfoString = "\(name) - Founded: \(formatter.string(from: founded))"
+                nameFoundedDateLabel.text = companyInfoString
             } else {
                 nameFoundedDateLabel.text = company.name
             }

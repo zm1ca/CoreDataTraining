@@ -32,6 +32,20 @@ class CreateEmployeeVC: UIViewController {
         return textField
     }()
     
+    let birthdayLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Birthday"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let birthdayTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "MM/DD/YYYY"
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +61,22 @@ class CreateEmployeeVC: UIViewController {
     
     
     @objc private func handleSave() {
-        guard let employeeName = nameTextField.text, let company = company else { return }
+        guard let employeeName = nameTextField.text, let company = company, let birthdayString = birthdayTextField.text else { return }
         
-        let (employee, error) = CoreDataManager.shared.createEmployee(name: employeeName, company: company)
+        if birthdayString.isEmpty {
+            presentAlertOnMainThread(title: "Empty Birthday", message: "You have to enter a birthday")
+            return
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+         
+        guard let birthday = dateFormatter.date(from: birthdayString) else {
+            presentAlertOnMainThread(title: "Incorrect Date", message: "Birthday date entered is not valid")
+            return
+        }
+        
+        let (employee, error) = CoreDataManager.shared.createEmployee(name: employeeName, birthday: birthday, company: company)
         if let error = error {
             print("Error while saving: \(error)")
         } else {
@@ -62,7 +89,7 @@ class CreateEmployeeVC: UIViewController {
     
     
     private func setupUI() {
-        setupLightBlueBackgroundView(height: 50)
+        setupLightBlueBackgroundView(height: 100)
         
         let padding: CGFloat = 16
         
@@ -81,6 +108,24 @@ class CreateEmployeeVC: UIViewController {
             nameTextField.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
             nameTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
             nameTextField.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor)
+        ])
+        
+        
+        view.addSubview(birthdayLabel)
+        NSLayoutConstraint.activate([
+            birthdayLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            birthdayLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
+            birthdayLabel.widthAnchor.constraint(equalToConstant: 100),
+            birthdayLabel.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        
+        view.addSubview(birthdayTextField)
+        NSLayoutConstraint.activate([
+            birthdayTextField.topAnchor.constraint(equalTo: birthdayLabel.topAnchor),
+            birthdayTextField.leadingAnchor.constraint(equalTo: birthdayLabel.trailingAnchor),
+            birthdayTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
+            birthdayTextField.bottomAnchor.constraint(equalTo: birthdayLabel.bottomAnchor)
         ])
     }
 }

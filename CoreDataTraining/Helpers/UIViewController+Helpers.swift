@@ -9,6 +9,16 @@ import UIKit
 
 extension UIViewController {
     
+    func presentAlertOnMainThread(title: String, message: String) {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let gotItAction = UIAlertAction(title: "Got It", style: .default, handler: nil)
+            alertController.addAction(gotItAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    
     func setupRightBarButtonItemAsPlus(selector: Selector) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: #imageLiteral(resourceName: "plus"),

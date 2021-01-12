@@ -52,7 +52,7 @@ class CoreDataManager {
     }
     
     
-    func createEmployee(name: String, company: Company) -> (Employee?, Error?) {
+    func createEmployee(name: String, birthday: Date, company: Company) -> (Employee?, Error?) {
         let context = persistentContainer.viewContext
         let employee = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context) as! Employee
         let employeeInformation = NSEntityDescription.insertNewObject(forEntityName: "EmployeeInformation", into: context) as! EmployeeInformation
@@ -61,7 +61,7 @@ class CoreDataManager {
         employee.name    = name
         
         employeeInformation.taxid = "123"
-        employeeInformation.birthday = Date()
+        employeeInformation.birthday = birthday
         employee.employeeInformation = employeeInformation
         
         do {
