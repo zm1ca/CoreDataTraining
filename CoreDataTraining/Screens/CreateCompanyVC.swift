@@ -115,6 +115,7 @@ class CreateCompanyVC: UIViewController {
         company.setValue(datePicker.date, forKey: "founded")
         if let companyImage = companyImageView.image {
             let encodedImage = companyImage.jpegData(compressionQuality: 0.8)
+            #warning("encodedImage is empty if companyImage was taken from assets")
             company.setValue(encodedImage, forKey: "imageData")
         }
 

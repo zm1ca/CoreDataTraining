@@ -34,4 +34,15 @@ class CoreDataManager {
             return nil
         }
     }
+    
+    
+    @objc func reset() {
+        let context = persistentContainer.viewContext
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Company.fetchRequest())
+        do {
+            try context.execute(batchDeleteRequest)
+        } catch let deleteError {
+            print("Failed to delete objects from Core Data: \(deleteError)")
+        }
+    }
 }

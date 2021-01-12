@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class CompanyTableVC: UITableViewController {
+class CompaniesTableVC: UITableViewController {
     
     var companies = [Company]()
 
@@ -25,6 +25,7 @@ class CompanyTableVC: UITableViewController {
         tableView.tableFooterView = UIView()
         
         navigationItem.title = "Companies"
+
         navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAddCompany))
         
@@ -35,21 +36,14 @@ class CompanyTableVC: UITableViewController {
     
     
     @objc private func handleReset() {
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Company.fetchRequest())
-        do {
-            try context.execute(batchDeleteRequest)
-            
-            var indexPathsToRemove = [IndexPath]()
-            for (index, _) in companies.enumerated() {
-                indexPathsToRemove.append(IndexPath(row: index, section: 0))
-            }
-            companies.removeAll()
-            tableView.deleteRows(at: indexPathsToRemove, with: .left)
- 
-        } catch let deleteError {
-            print("Failed to delete objects from Core Data: \(deleteError)")
+        CoreDataManager.shared.reset()
+        
+        var indexPathsToRemove = [IndexPath]()
+        for (index, _) in companies.enumerated() {
+            indexPathsToRemove.append(IndexPath(row: index, section: 0))
         }
+        companies.removeAll()
+        tableView.deleteRows(at: indexPathsToRemove, with: .left)
     }
     
     

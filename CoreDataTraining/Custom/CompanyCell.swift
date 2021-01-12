@@ -27,8 +27,6 @@ class CompanyCell: UITableViewCell {
             
             if let imageData = company.imageData {
                 companyImageView.image = UIImage(data: imageData)
-            } else {
-                companyImageView.image = #imageLiteral(resourceName: "select_photo_empty")
             }
         }
     }

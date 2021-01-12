@@ -12,7 +12,7 @@
 		400F9FC625AD86A100285395 /* CompanyTableVC+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400F9FC525AD86A100285395 /* CompanyTableVC+UITableView.swift */; };
 		40361E5725A8E0F700353BF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E5625A8E0F700353BF9 /* AppDelegate.swift */; };
 		40361E5925A8E0F700353BF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E5825A8E0F700353BF9 /* SceneDelegate.swift */; };
-		40361E5B25A8E0F700353BF9 /* CompanyTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E5A25A8E0F700353BF9 /* CompanyTableVC.swift */; };
+		40361E5B25A8E0F700353BF9 /* CompaniesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E5A25A8E0F700353BF9 /* CompaniesTableVC.swift */; };
 		40361E6025A8E0F800353BF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40361E5F25A8E0F800353BF9 /* Assets.xcassets */; };
 		40361E6325A8E0F800353BF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40361E6125A8E0F800353BF9 /* LaunchScreen.storyboard */; };
 		40361E7025A8F30B00353BF9 /* LightContentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E6F25A8F30A00353BF9 /* LightContentNavigationController.swift */; };
@@ -29,7 +29,7 @@
 		40361E5325A8E0F700353BF9 /* CoreDataTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40361E5625A8E0F700353BF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40361E5825A8E0F700353BF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		40361E5A25A8E0F700353BF9 /* CompanyTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyTableVC.swift; sourceTree = "<group>"; };
+		40361E5A25A8E0F700353BF9 /* CompaniesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesTableVC.swift; sourceTree = "<group>"; };
 		40361E5F25A8E0F800353BF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40361E6225A8E0F800353BF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40361E6425A8E0F800353BF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +51,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		400F9FCA25AD8A7F00285395 /* Companies Table */ = {
+			isa = PBXGroup;
+			children = (
+				40361E5A25A8E0F700353BF9 /* CompaniesTableVC.swift */,
+				400F9FC225AD85C800285395 /* CompanyTableVC+CreateCompanyVCDelegate.swift */,
+				400F9FC525AD86A100285395 /* CompanyTableVC+UITableView.swift */,
+			);
+			path = "Companies Table";
+			sourceTree = "<group>";
+		};
 		40361E4A25A8E0F700353BF9 = {
 			isa = PBXGroup;
 			children = (
@@ -103,9 +113,7 @@
 		40966B4C25AC75B100CB0339 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				40361E5A25A8E0F700353BF9 /* CompanyTableVC.swift */,
-				400F9FC225AD85C800285395 /* CompanyTableVC+CreateCompanyVCDelegate.swift */,
-				400F9FC525AD86A100285395 /* CompanyTableVC+UITableView.swift */,
+				400F9FCA25AD8A7F00285395 /* Companies Table */,
 				403ACDC125AB0F6600B2EE3C /* CreateCompanyVC.swift */,
 			);
 			path = Screens;
@@ -191,7 +199,7 @@
 			files = (
 				4069601625AB053B00BCD77A /* UIColor+Theme.swift in Sources */,
 				40361E7025A8F30B00353BF9 /* LightContentNavigationController.swift in Sources */,
-				40361E5B25A8E0F700353BF9 /* CompanyTableVC.swift in Sources */,
+				40361E5B25A8E0F700353BF9 /* CompaniesTableVC.swift in Sources */,
 				403ACDC225AB0F6600B2EE3C /* CreateCompanyVC.swift in Sources */,
 				400F9FBF25AD789100285395 /* CompanyCell.swift in Sources */,
 				409D390025AB75EA00FC7A34 /* CoreDataTrainingModels.xcdatamodeld in Sources */,
