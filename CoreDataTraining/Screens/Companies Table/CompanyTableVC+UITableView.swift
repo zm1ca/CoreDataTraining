@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension CompaniesTableVC {
+extension CompanyTableVC {
     
     //MARK: - Table View Data Source
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -26,6 +26,13 @@ extension CompaniesTableVC {
     
     
     //MARK: - Table View Delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let company = self.companies[indexPath.row]
+        let employeeTableController = EmployeeTableVC()
+        employeeTableController.company = company
+        navigationController?.pushViewController(employeeTableController, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = .CDTLightBlue

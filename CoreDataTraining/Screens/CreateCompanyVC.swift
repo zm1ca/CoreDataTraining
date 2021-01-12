@@ -88,13 +88,8 @@ class CreateCompanyVC: UIViewController {
         
         setupUI()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        setupCancelButtonInNavBar()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
-    }
-    
-    
-    @objc private func handleCancel() {
-        dismiss(animated: true, completion: nil)
     }
     
     

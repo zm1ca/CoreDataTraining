@@ -1,5 +1,5 @@
 //
-//  CompaniesTableVC+CreateCompanyVCDelegate.swift
+//  CompanyTableVC+CreateCompanyVCDelegate.swift
 //  CoreDataTraining
 //
 //  Created by Źmicier Fiedčanka on 12.01.21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension CompaniesTableVC: CreateCompanyVCDelegate {
+extension CompanyTableVC: CreateCompanyVCDelegate {
     func addCompany(company: Company) {
         companies.append(company)
         let newIndexPath = IndexPath(row: companies.count - 1, section: 0)
