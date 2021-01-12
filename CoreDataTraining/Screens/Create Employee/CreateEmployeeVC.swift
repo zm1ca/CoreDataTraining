@@ -16,6 +16,8 @@ class CreateEmployeeVC: UIViewController {
     
     var delegate: CreateEmployeeVCDelegate?
     
+    var company: Company?
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name"
@@ -45,9 +47,9 @@ class CreateEmployeeVC: UIViewController {
     
     
     @objc private func handleSave() {
-        guard let employeeName = nameTextField.text else { return }
+        guard let employeeName = nameTextField.text, let company = company else { return }
         
-        let (employee, error) = CoreDataManager.shared.createEmployee(name: employeeName)
+        let (employee, error) = CoreDataManager.shared.createEmployee(name: employeeName, company: company)
         if let error = error {
             print("Error while saving: \(error)")
         } else {

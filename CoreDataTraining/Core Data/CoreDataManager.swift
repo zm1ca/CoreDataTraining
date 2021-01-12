@@ -36,17 +36,8 @@ class CoreDataManager {
     }
     
     
-    func fetchEmployees() -> [Employee]? {
-        let context = persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<Employee>(entityName: "Employee")
-        
-        do {
-            let employees = try context.fetch(fetchRequest)
-            return employees
-        } catch let fetchError {
-            print("Failed to fetch employees: \(fetchError)")
-            return nil
-        }
+    func fetchEmployees(of company: Company) -> [Employee]? {
+        return company.employees?.allObjects as? [Employee]
     }
     
     
@@ -61,16 +52,16 @@ class CoreDataManager {
     }
     
     
-    func createEmployee(name: String) -> (Employee?, Error?) {
+    func createEmployee(name: String, company: Company) -> (Employee?, Error?) {
         let context = persistentContainer.viewContext
         let employee = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context) as! Employee
-        
-        employee.setValue(name, forKey: "name")
-        
         let employeeInformation = NSEntityDescription.insertNewObject(forEntityName: "EmployeeInformation", into: context) as! EmployeeInformation
+        
+        employee.company = company
+        employee.name    = name
+        
         employeeInformation.taxid = "123"
         employeeInformation.birthday = Date()
-        
         employee.employeeInformation = employeeInformation
         
         do {

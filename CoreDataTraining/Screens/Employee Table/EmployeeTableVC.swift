@@ -27,7 +27,7 @@ class EmployeeTableVC: UITableViewController {
         
         setupRightBarButtonItemAsPlus(selector: #selector(handleAdd))
         
-        if let fetchedEmployees = CoreDataManager.shared.fetchEmployees() {
+        if let company = company, let fetchedEmployees = CoreDataManager.shared.fetchEmployees(of: company) {
             self.employees = fetchedEmployees
         }
     }
@@ -36,6 +36,7 @@ class EmployeeTableVC: UITableViewController {
     @objc private func handleAdd() {
         let createEmployeeVC = CreateEmployeeVC()
         createEmployeeVC.delegate = self
+        createEmployeeVC.company  = company
         let navController = LightContentNavigationController(rootViewController: createEmployeeVC)
         present(navController, animated: true)
     }
