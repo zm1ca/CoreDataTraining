@@ -46,6 +46,17 @@ class CreateEmployeeVC: UIViewController {
         return textField
     }()
     
+    let employeeTypeSegmentedControl: UISegmentedControl = {
+        #warning("Stringly typed")
+        let types = ["Executive", "Management", "Staff"]
+        let segmentedControl = UISegmentedControl(items: types)
+        segmentedControl.selectedSegmentIndex = 0
+        //segmentedControl.tintColor = .white
+        //segmentedControl.selectedSegmentTintColor = .CDTDarkBlue
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        return segmentedControl
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +87,11 @@ class CreateEmployeeVC: UIViewController {
             return
         }
         
-        let (employee, error) = CoreDataManager.shared.createEmployee(name: employeeName, birthday: birthday, company: company)
+        guard let employeeType = employeeTypeSegmentedControl.titleForSegment(at: employeeTypeSegmentedControl.selectedSegmentIndex) else {
+            fatalError("employee type was not selected")
+        }
+        
+        let (employee, error) = CoreDataManager.shared.createEmployee(name: employeeName, employeeType: employeeType, birthday: birthday, company: company)
         if let error = error {
             print("Error while saving: \(error)")
         } else {
@@ -89,7 +104,7 @@ class CreateEmployeeVC: UIViewController {
     
     
     private func setupUI() {
-        setupLightBlueBackgroundView(height: 100)
+        setupLightBlueBackgroundView(height: 150)
         
         let padding: CGFloat = 16
         
@@ -101,7 +116,6 @@ class CreateEmployeeVC: UIViewController {
             nameLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
         
-        
         view.addSubview(nameTextField)
         NSLayoutConstraint.activate([
             nameTextField.topAnchor.constraint(equalTo: nameLabel.topAnchor),
@@ -109,7 +123,6 @@ class CreateEmployeeVC: UIViewController {
             nameTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
             nameTextField.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor)
         ])
-        
         
         view.addSubview(birthdayLabel)
         NSLayoutConstraint.activate([
@@ -119,7 +132,6 @@ class CreateEmployeeVC: UIViewController {
             birthdayLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
         
-        
         view.addSubview(birthdayTextField)
         NSLayoutConstraint.activate([
             birthdayTextField.topAnchor.constraint(equalTo: birthdayLabel.topAnchor),
@@ -127,5 +139,14 @@ class CreateEmployeeVC: UIViewController {
             birthdayTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
             birthdayTextField.bottomAnchor.constraint(equalTo: birthdayLabel.bottomAnchor)
         ])
+        
+        view.addSubview(employeeTypeSegmentedControl)
+        NSLayoutConstraint.activate([
+            employeeTypeSegmentedControl.topAnchor.constraint(equalTo: birthdayLabel.bottomAnchor),
+            employeeTypeSegmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
+            employeeTypeSegmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
+            employeeTypeSegmentedControl.heightAnchor.constraint(equalToConstant: 34)
+        ])
+        
     }
 }
