@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		400F9FBF25AD789100285395 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400F9FBE25AD789100285395 /* CompanyCell.swift */; };
 		40361E5725A8E0F700353BF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E5625A8E0F700353BF9 /* AppDelegate.swift */; };
 		40361E5925A8E0F700353BF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E5825A8E0F700353BF9 /* SceneDelegate.swift */; };
 		40361E5B25A8E0F700353BF9 /* CompanyTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E5A25A8E0F700353BF9 /* CompanyTableVC.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		400F9FBE25AD789100285395 /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 		40361E5325A8E0F700353BF9 /* CoreDataTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40361E5625A8E0F700353BF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40361E5825A8E0F700353BF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		40966B4A25AC759E00CB0339 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				400F9FBE25AD789100285395 /* CompanyCell.swift */,
 				40361E6F25A8F30A00353BF9 /* LightContentNavigationController.swift */,
 				4069601525AB053B00BCD77A /* UIColor+Theme.swift */,
 			);
@@ -184,6 +187,7 @@
 				40361E7025A8F30B00353BF9 /* LightContentNavigationController.swift in Sources */,
 				40361E5B25A8E0F700353BF9 /* CompanyTableVC.swift in Sources */,
 				403ACDC225AB0F6600B2EE3C /* CreateCompanyVC.swift in Sources */,
+				400F9FBF25AD789100285395 /* CompanyCell.swift in Sources */,
 				409D390025AB75EA00FC7A34 /* CoreDataTrainingModels.xcdatamodeld in Sources */,
 				40361E5725A8E0F700353BF9 /* AppDelegate.swift in Sources */,
 				40966B4325AC35B900CB0339 /* CoreDataManager.swift in Sources */,

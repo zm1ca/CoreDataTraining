@@ -17,7 +17,7 @@ class CompanyTableVC: UITableViewController {
         super.viewDidLoad()
 
         //Setting up tableView
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellid")
+        tableView.register(CompanyCell.self, forCellReuseIdentifier: "cellid")
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -81,35 +81,18 @@ class CompanyTableVC: UITableViewController {
     
     //MARK: - Table View Data Source
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath)
-
-        cell.backgroundColor = .CDTTealColor
-        cell.textLabel?.textColor = .white
-        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        
-        let company = companies[indexPath.row]
-        if let name = company.name, let founded = company.founded {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            
-            let dateString = "\(name) - Founded: \(formatter.string(from: founded))"
-            cell.textLabel?.text = dateString
-            
-        } else {
-            cell.textLabel?.text = company.name
-        }
-        
-        if let imageData = company.imageData {
-            cell.imageView?.image = UIImage(data: imageData)
-        } else {
-            cell.imageView?.image = #imageLiteral(resourceName: "select_photo_empty")
-        }
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath) as! CompanyCell
+        cell.company = companies[indexPath.row]
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return companies.count
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
     
