@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol CreateEmployeeVCDelegate {
+    func addEmployee(employee: Employee)
+}
+
+
 class CreateEmployeeVC: UIViewController {
+    
+    var delegate: CreateEmployeeVCDelegate?
     
     let nameLabel: UILabel = {
         let label = UILabel()
@@ -40,10 +47,14 @@ class CreateEmployeeVC: UIViewController {
     @objc private func handleSave() {
         guard let employeeName = nameTextField.text else { return }
         
-        if let error = CoreDataManager.shared.createEmployee(name: employeeName) {
+        let (employee, error) = CoreDataManager.shared.createEmployee(name: employeeName)
+        if let error = error {
             print("Error while saving: \(error)")
         } else {
-            dismiss(animated: true)
+            dismiss(animated: true) {
+                guard let employee = employee else { return }
+                self.delegate?.addEmployee(employee: employee)
+            }
         }
     }
     

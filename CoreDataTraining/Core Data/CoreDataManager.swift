@@ -29,8 +29,22 @@ class CoreDataManager {
         do {
             let companies = try context.fetch(fetchRequest)
             return companies
-        } catch let error {
-            print("Failed to fetch companies:", error)
+        } catch let fetchError {
+            print("Failed to fetch companies: \(fetchError)")
+            return nil
+        }
+    }
+    
+    
+    func fetchEmployees() -> [Employee]? {
+        let context = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Employee>(entityName: "Employee")
+        
+        do {
+            let employees = try context.fetch(fetchRequest)
+            return employees
+        } catch let fetchError {
+            print("Failed to fetch employees: \(fetchError)")
             return nil
         }
     }
@@ -47,17 +61,17 @@ class CoreDataManager {
     }
     
     
-    func createEmployee(name: String) -> Error? {
+    func createEmployee(name: String) -> (Employee?, Error?) {
         let context = persistentContainer.viewContext
-        let employee = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context)
+        let employee = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context) as! Employee
         
         employee.setValue(name, forKey: "name")
         
         do {
             try context.save()
-            return nil
+            return (employee, nil)
         } catch let saveError {
-            return saveError
+            return (nil, saveError)
         }
     }
 }

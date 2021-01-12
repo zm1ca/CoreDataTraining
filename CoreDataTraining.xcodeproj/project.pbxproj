@@ -21,6 +21,8 @@
 		40361E6325A8E0F800353BF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40361E6125A8E0F800353BF9 /* LaunchScreen.storyboard */; };
 		40361E7025A8F30B00353BF9 /* LightContentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E6F25A8F30A00353BF9 /* LightContentNavigationController.swift */; };
 		403ACDC225AB0F6600B2EE3C /* CreateCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403ACDC125AB0F6600B2EE3C /* CreateCompanyVC.swift */; };
+		404E099425ADBB0D00DFA521 /* EmployeeTableVC+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404E099325ADBB0D00DFA521 /* EmployeeTableVC+UITableView.swift */; };
+		404E099825ADBC6300DFA521 /* EmployeeTableVC+CreateEmployeeVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404E099725ADBC6300DFA521 /* EmployeeTableVC+CreateEmployeeVCDelegate.swift */; };
 		4069601625AB053B00BCD77A /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069601525AB053B00BCD77A /* UIColor+Theme.swift */; };
 		40966B4325AC35B900CB0339 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40966B4225AC35B900CB0339 /* CoreDataManager.swift */; };
 		409D390025AB75EA00FC7A34 /* CoreDataTrainingModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 409D38FE25AB75EA00FC7A34 /* CoreDataTrainingModels.xcdatamodeld */; };
@@ -43,6 +45,8 @@
 		40361E6425A8E0F800353BF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40361E6F25A8F30A00353BF9 /* LightContentNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightContentNavigationController.swift; sourceTree = "<group>"; };
 		403ACDC125AB0F6600B2EE3C /* CreateCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyVC.swift; sourceTree = "<group>"; };
+		404E099325ADBB0D00DFA521 /* EmployeeTableVC+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeTableVC+UITableView.swift"; sourceTree = "<group>"; };
+		404E099725ADBC6300DFA521 /* EmployeeTableVC+CreateEmployeeVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeTableVC+CreateEmployeeVCDelegate.swift"; sourceTree = "<group>"; };
 		4069601525AB053B00BCD77A /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		40966B4225AC35B900CB0339 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		409D38FF25AB75EA00FC7A34 /* CoreDataTraining.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTraining.xcdatamodel; sourceTree = "<group>"; };
@@ -126,6 +130,24 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		404E099025ADBAC800DFA521 /* Employee Table */ = {
+			isa = PBXGroup;
+			children = (
+				400F9FCD25AD927900285395 /* EmployeeTableVC.swift */,
+				404E099325ADBB0D00DFA521 /* EmployeeTableVC+UITableView.swift */,
+				404E099725ADBC6300DFA521 /* EmployeeTableVC+CreateEmployeeVCDelegate.swift */,
+			);
+			path = "Employee Table";
+			sourceTree = "<group>";
+		};
+		404E099225ADBAD200DFA521 /* Create Employee */ = {
+			isa = PBXGroup;
+			children = (
+				400F9FD825AD95BD00285395 /* CreateEmployeeVC.swift */,
+			);
+			path = "Create Employee";
+			sourceTree = "<group>";
+		};
 		40966B4A25AC759E00CB0339 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,8 +163,8 @@
 			children = (
 				400F9FCA25AD8A7F00285395 /* Companies Table */,
 				400F9FDE25AD98CA00285395 /* Create Company */,
-				400F9FCD25AD927900285395 /* EmployeeTableVC.swift */,
-				400F9FD825AD95BD00285395 /* CreateEmployeeVC.swift */,
+				404E099025ADBAC800DFA521 /* Employee Table */,
+				404E099225ADBAD200DFA521 /* Create Employee */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -231,11 +253,13 @@
 				40361E7025A8F30B00353BF9 /* LightContentNavigationController.swift in Sources */,
 				40361E5B25A8E0F700353BF9 /* CompanyTableVC.swift in Sources */,
 				403ACDC225AB0F6600B2EE3C /* CreateCompanyVC.swift in Sources */,
+				404E099825ADBC6300DFA521 /* EmployeeTableVC+CreateEmployeeVCDelegate.swift in Sources */,
 				400F9FBF25AD789100285395 /* CompanyCell.swift in Sources */,
 				409D390025AB75EA00FC7A34 /* CoreDataTrainingModels.xcdatamodeld in Sources */,
 				400F9FC625AD86A100285395 /* CompanyTableVC+UITableView.swift in Sources */,
 				40361E5725A8E0F700353BF9 /* AppDelegate.swift in Sources */,
 				400F9FC325AD85C800285395 /* CompanyTableVC+CreateCompanyVCDelegate.swift in Sources */,
+				404E099425ADBB0D00DFA521 /* EmployeeTableVC+UITableView.swift in Sources */,
 				40966B4325AC35B900CB0339 /* CoreDataManager.swift in Sources */,
 				40361E5925A8E0F700353BF9 /* SceneDelegate.swift in Sources */,
 				400F9FD925AD95BD00285395 /* CreateEmployeeVC.swift in Sources */,
