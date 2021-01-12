@@ -71,8 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				40361E5A25A8E0F700353BF9 /* CompanyTableVC.swift */,
-				400F9FC225AD85C800285395 /* CompanyTableVC+CreateCompanyVCDelegate.swift */,
 				400F9FC525AD86A100285395 /* CompanyTableVC+UITableView.swift */,
+				400F9FC225AD85C800285395 /* CompanyTableVC+CreateCompanyVCDelegate.swift */,
 			);
 			path = "Companies Table";
 			sourceTree = "<group>";

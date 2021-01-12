@@ -9,7 +9,7 @@ import UIKit
 
 extension EmployeeTableVC {
 
-    var allEmployees: [[Employee]] {
+    var employeeSections: [[Employee]] {
         EmployeeType.allCases.map { employeeType in
             employees.filter { $0.type == employeeType.rawValue }
         }
@@ -17,7 +17,7 @@ extension EmployeeTableVC {
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return allEmployees.count
+        return employeeSections.count
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -34,7 +34,7 @@ extension EmployeeTableVC {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allEmployees[section].count
+        return employeeSections[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,7 +45,7 @@ extension EmployeeTableVC {
         cell.textLabel?.textColor   = .white
         cell.textLabel?.font        = UIFont.boldSystemFont(ofSize: 16)
         
-        let employee = allEmployees[indexPath.section][indexPath.row]
+        let employee = employeeSections[indexPath.section][indexPath.row]
         if let name = employee.name, let birthday = employee.employeeInformation?.birthday {
             let formatter = DateFormatter()
             formatter.dateStyle = .medium

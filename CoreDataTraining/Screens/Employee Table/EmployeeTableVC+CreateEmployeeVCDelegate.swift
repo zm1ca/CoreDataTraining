@@ -11,6 +11,8 @@ extension EmployeeTableVC: CreateEmployeeVCDelegate {
     
     func addEmployee(employee: Employee) {
         employees.append(employee)
-        tableView.reloadData()
+        let properSection = EmployeeType.allRaws.firstIndex(of: employee.type!)!
+        let newIndexPath = IndexPath(row: employeeSections[properSection].count - 1, section: properSection)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
     }
 }
