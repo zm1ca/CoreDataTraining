@@ -54,8 +54,8 @@ class CoreDataManager {
     
     func createEmployee(name: String, employeeType: String, birthday: Date, company: Company) -> (Employee?, Error?) {
         let context = persistentContainer.viewContext
-        let employee = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context) as! Employee
-        let employeeInformation = NSEntityDescription.insertNewObject(forEntityName: "EmployeeInformation", into: context) as! EmployeeInformation
+        let employee = Employee(context: context)
+        let employeeInformation = EmployeeInformation(context: context)
         
         employee.company = company
         employee.type    = employeeType

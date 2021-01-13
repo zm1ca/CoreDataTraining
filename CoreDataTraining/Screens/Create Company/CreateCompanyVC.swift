@@ -107,7 +107,7 @@ class CreateCompanyVC: UIViewController {
     
     private func createCompany() {
         let context = CoreDataManager.shared.persistentContainer.viewContext
-        let company = NSEntityDescription.insertNewObject(forEntityName: "Company", into: context)
+        let company = Company(context: context)
         
         company.setValue(nameTextField.text, forKey: "name")
         company.setValue(datePicker.date, forKey: "founded")
@@ -121,7 +121,7 @@ class CreateCompanyVC: UIViewController {
             try context.save()
             
             dismiss(animated: true) {
-                self.delegate?.addCompany(company: company as! Company)
+                self.delegate?.addCompany(company: company)
             }
             
         } catch let saveError {
