@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func configureNavigationController() -> UINavigationController {
-        let companiesController = CompanyTableVC()
+        let companiesController = CompaniesAutoUpdateVC()
         return LightContentNavigationController(rootViewController: companiesController)
     }
 
