@@ -17,6 +17,8 @@
 		40151E7925B02BC4001F746B /* CompaniesAutoUpdateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40151E7825B02BC4001F746B /* CompaniesAutoUpdateVC.swift */; };
 		40151E7E25B03AF7001F746B /* CompaniesAutoUpdateVC+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40151E7D25B03AF7001F746B /* CompaniesAutoUpdateVC+UITableView.swift */; };
 		40151E8125B03B35001F746B /* CompaniesAutoUpdateVC+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40151E8025B03B35001F746B /* CompaniesAutoUpdateVC+NSFetchedResultsControllerDelegate.swift */; };
+		40151E8525B042B2001F746B /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40151E8425B042B2001F746B /* NetworkingManager.swift */; };
+		40151E8A25B0481D001F746B /* JSONCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40151E8925B0481D001F746B /* JSONCompany.swift */; };
 		40361E5725A8E0F700353BF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E5625A8E0F700353BF9 /* AppDelegate.swift */; };
 		40361E5925A8E0F700353BF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E5825A8E0F700353BF9 /* SceneDelegate.swift */; };
 		40361E5B25A8E0F700353BF9 /* CompanyTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361E5A25A8E0F700353BF9 /* CompanyTableVC.swift */; };
@@ -44,6 +46,8 @@
 		40151E7825B02BC4001F746B /* CompaniesAutoUpdateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesAutoUpdateVC.swift; sourceTree = "<group>"; };
 		40151E7D25B03AF7001F746B /* CompaniesAutoUpdateVC+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesAutoUpdateVC+UITableView.swift"; sourceTree = "<group>"; };
 		40151E8025B03B35001F746B /* CompaniesAutoUpdateVC+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesAutoUpdateVC+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
+		40151E8425B042B2001F746B /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		40151E8925B0481D001F746B /* JSONCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCompany.swift; sourceTree = "<group>"; };
 		40361E5325A8E0F700353BF9 /* CoreDataTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40361E5625A8E0F700353BF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40361E5825A8E0F700353BF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +114,15 @@
 			path = "Companies Auto Update";
 			sourceTree = "<group>";
 		};
+		40151E8325B04284001F746B /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				40151E8425B042B2001F746B /* NetworkingManager.swift */,
+				40151E8925B0481D001F746B /* JSONCompany.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		40361E4A25A8E0F700353BF9 = {
 			isa = PBXGroup;
 			children = (
@@ -129,9 +142,10 @@
 		40361E5525A8E0F700353BF9 /* CoreDataTraining */ = {
 			isa = PBXGroup;
 			children = (
-				400F9FD325AD944400285395 /* Helpers */,
 				40966B4C25AC75B100CB0339 /* Screens */,
+				40151E8325B04284001F746B /* Networking */,
 				40966B4E25AC75CC00CB0339 /* Core Data */,
+				400F9FD325AD944400285395 /* Helpers */,
 				40966B4A25AC759E00CB0339 /* Custom */,
 				40361E6B25A8E10F00353BF9 /* Supporting Files */,
 				40361E6425A8E0F800353BF9 /* Info.plist */,
@@ -271,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				400F9FDC25AD98B500285395 /* CreateCompanyVC+ImagePicker.swift in Sources */,
+				40151E8525B042B2001F746B /* NetworkingManager.swift in Sources */,
 				400F9FCE25AD927900285395 /* EmployeeTableVC.swift in Sources */,
 				4069601625AB053B00BCD77A /* UIColor+Theme.swift in Sources */,
 				404217EF25ADEDD700F8E922 /* IndentedLabel.swift in Sources */,
@@ -290,6 +305,7 @@
 				404E099425ADBB0D00DFA521 /* EmployeeTableVC+UITableView.swift in Sources */,
 				40966B4325AC35B900CB0339 /* CoreDataManager.swift in Sources */,
 				40361E5925A8E0F700353BF9 /* SceneDelegate.swift in Sources */,
+				40151E8A25B0481D001F746B /* JSONCompany.swift in Sources */,
 				400F9FD925AD95BD00285395 /* CreateEmployeeVC.swift in Sources */,
 				400F9FD525AD945F00285395 /* UIViewController+Helpers.swift in Sources */,
 			);

@@ -43,6 +43,7 @@ class CompaniesAutoUpdateVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .CDTDarkBlue
         
         navigationItem.title = "Companies Auto"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(handleDelete))
@@ -51,7 +52,7 @@ class CompaniesAutoUpdateVC: UITableViewController {
         tableView.register(CompanyCell.self, forCellReuseIdentifier: cellId)
 
         
-        view.backgroundColor = .CDTDarkBlue
+        NetworkingManager.shared.downloadCompaniesFromServer()
     }
     
     
@@ -65,7 +66,6 @@ class CompaniesAutoUpdateVC: UITableViewController {
     
     @objc private func handleDelete() {
         let request: NSFetchRequest<Company> = Company.fetchRequest()
-        request.predicate = NSPredicate(format: "name CONTAINS %@", "o")
         
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let companiesWithO = try? context.fetch(request)
